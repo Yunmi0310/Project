@@ -1,4 +1,4 @@
-Proejct related to Machin learning and Deep learning 
+Proejct related to Machin learning
 
 1. NLP tutorial 
 
