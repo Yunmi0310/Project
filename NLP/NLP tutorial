@@ -1,0 +1,58 @@
+	1. Data gathering 
+	- Web scraping 
+	Requests
+	Beautiful soup
+	- Saving python data
+	Pickle: Serialize python objects
+	Simple : save data for later 
+	
+	
+	
+	2. Data cleaning ( cleaned, tokenized, and put into a matrix)
+	
+	1) Cleaning
+	- Remove punctuation 
+	- Remove numbers
+	- Lowercase letters 
+
+     2) tokenize       
+      -  re(python library for regular expressions, basically a way to search for patterns)
+      - Tokenization(split text into smaller pieces aka a token. The most common token size is a word. It can also be a sentences.
+      - now that every word is its own token, you can filter out words that have very little meaning - these are called 'stop words'. Ex) a, the 
+      -  This representation of the text is called a bag of words model. It is a simple format that ignores order. 
+            
+    3) put it in the matrix ( use scikit-learn and Count Vectorizer)
+    - Each row is a different document(or a different personality in my case)
+    - Each column is a different term (usually words but can also be bi-grams like 'thank you')
+    - The values in each cell are word counts 
+
+
+EDA 
+	1) Top words: find the most common words for each personality
+	- Use document matrix 
+	- Aggregate: for each personality, select the columns with the largest values 
+	- Visualize top30 words each personality (we can use wordcloud or barplot
+	- Insights:  see if it makes sense or need more cleaning 
+	2) Vocabulary: take a look at unique number of words used
+	3) Amount of profanity: note the number of swear words said
+
+Techniques 
+
+	1) Sentiment Analysis 
+	 - Input: A corpus. The reason we are not using the document-term
+	Matrix here is because order matters. "great" = positive. " not great"= negative 
+            - TextBlob: TextBlob is a Python library that is built on top of nltk. It is easier to 
+               use and provides some additional functionality, such as rule-based sentiment scores
+            - output: for each personality, we will give them a sentiment score( how positive/ negative they are) and subjectivity score(how opinionated are they)
+From textblob import TextBlob
+TextBlob("I love PyOhio"). Sentiment 
+Result : polarity(-1,1) positivity. Subjectivity(0,1) opnion(more subjective)
+
+Naivy bays assumes all features are independent - for text it is okay to assume that they are independent 
+
+	2) Topic modeling 
+	- Input: A document -term matrix. Each topic will consist of a set of words where order doesn't matter, so we are going to start with the bag of words format
+	- Gensim: Gensim is a python toolkit built for topic modeling. Laten Dirichlet Allocation(LDA). Also, use nltk  for some part of speech tagging.
+	- Output: our goal is to find themes across various comedy routines, and see which comedians tend to talk about which themes 
+	- Document is probability of distribution( means mixed of topics )
+Every topic is mixed ( probability distribution) and every topic consists of a mix of words 
